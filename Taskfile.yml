@@ -16,6 +16,7 @@ tasks:
     cmds:
       - uv venv
       - uv sync --dev
+      - uv run pre-commit install
 
   run:
     cmds:
