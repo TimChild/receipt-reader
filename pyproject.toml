@@ -3,7 +3,7 @@ name = "receipt-reader"
 version = "0.1.0"
 description = "Parses receipt images."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.13"
 dependencies = [
     "reflex>=0.7.4",
 ]
