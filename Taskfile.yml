@@ -11,6 +11,12 @@ tasks:
       - echo "{{.GREETING}}"
     silent: true
 
+  install:
+    desc: Install required development environment
+    cmds:
+      - uv venv
+      - uv sync --dev
+
   run:
     cmds:
       - uv run reflex run
