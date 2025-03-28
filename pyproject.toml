@@ -7,3 +7,14 @@ requires-python = ">=3.13"
 dependencies = [
     "reflex>=0.7.4",
 ]
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.398",
+    "ruff>=0.11.2",
+]
+
+[tool.pyright]
+typeCheckingMode = "standard"
+venvPath = "."
+venv = ".venv"
