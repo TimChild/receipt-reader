@@ -14,3 +14,10 @@ tasks:
   run:
     cmds:
       - uv run reflex run
+
+  sync:
+    desc: Sync from GitHub and install dependencies
+    cmds:
+      - git fetch
+      - git pull
+      - uv sync --dev
