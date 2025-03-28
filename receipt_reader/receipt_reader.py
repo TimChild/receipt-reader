@@ -12,16 +12,30 @@ from rxconfig import config
 class State(rx.State):
     """The app state."""
 
+    running: bool = False
+
     @rx.event(background=True)
     async def on_drop_process_receipt(self, files: rx.UploadFile) -> AsyncIterator[EventType]:
         """Process the receipt."""
         _ = files
-        yield rx.toast.info("Processing receipt...")
+        async with self:
+            if self.running:
+                return
+            self.running = True
+        # -- self.running gets updated
 
-        await asyncio.sleep(2)
-        # Do the processing here
+        try:
+            yield rx.toast.info("Processing receipt...")
 
-        yield rx.toast.info("Receipt processed!")
+            await asyncio.sleep(2)
+            # Do the processing here
+
+            yield rx.toast.info("Receipt processed!")
+
+        finally:
+            async with self:
+                self.running = False
+
         return
 
 
