@@ -1,9 +1,12 @@
-import boto3
 import io
 import json
 from typing import Any, Dict, List
+
+import boto3
+import typer
 from PIL import Image, ImageDraw
-import click
+
+app = typer.Typer()
 
 
 def show_bounding_box(
@@ -62,7 +65,7 @@ def display_block_information(block: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def process_text_analysis(
-    s3_connection: boto3.resource, client: boto3.client, bucket: str, document: str
+    s3_connection: Any, client: Any, bucket: str, document: str
 ) -> List[Dict[str, Any]]:
     s3_object = s3_connection.Object(bucket, document)
     s3_response = s3_object.get()
@@ -101,14 +104,16 @@ def process_text_analysis(
     return block_data
 
 
-@click.command()
-@click.option("--profile", default=None, help="AWS profile name")
-@click.option("--region", default="us-west-2", help="AWS region name")
-@click.option("--bucket", prompt="Bucket name", help="S3 bucket name")
-@click.option("--document", prompt="Document name", help="Document name in S3 bucket")
-def main(profile: str, region: str, bucket: str, document: str) -> None:
+@app.command()
+def main(bucket: str, document: str, region: str = "us-west-2", profile: str | None = None) -> None:
     """
     Main function to analyze the document stored in S3 using AWS Textract.
+
+    Args:
+        profile: AWS profile name.
+        region: AWS region name.
+        bucket: S3 bucket name.
+        document: Document name in S3 bucket.
     """
     session = boto3.Session(profile_name=profile)
     s3_connection = session.resource("s3")
@@ -125,4 +130,4 @@ def main(profile: str, region: str, bucket: str, document: str) -> None:
 
 
 if __name__ == "__main__":
-    main()
+    app()
