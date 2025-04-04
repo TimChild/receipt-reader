@@ -5,6 +5,9 @@ description = "Parses receipt images."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "boto3>=1.37.28",
+    "click>=8.1.8",
+    "pillow>=11.1.0",
     "reflex>=0.7.4",
 ]
 
