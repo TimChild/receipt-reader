@@ -5,3 +5,5 @@ assets/external/
 *.py[cod]
 __pycache__/
 .python-version
+*.json
+uploaded_files/*
