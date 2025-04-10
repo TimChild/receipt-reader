@@ -69,8 +69,8 @@ class TypeField(BaseModel):
 
 
 class ValueDetection(BaseModel):
-    confidence: float = Field(..., alias="Confidence")
-    geometry: Geometry = Field(..., alias="Geometry")
+    confidence: float | None = Field(None, alias="Confidence")
+    geometry: Geometry | None = Field(None, alias="Geometry")
     text: str = Field(..., alias="Text")
 
 
@@ -79,7 +79,7 @@ class LineItemExpenseField(BaseModel):
     group_properties: list[GroupProperty] | None = Field(None, alias="GroupProperties")
     label_detection: LabelDetection | None = Field(None, alias="LabelDetection")
     page_number: int = Field(..., alias="PageNumber")
-    type: TypeField = Field(..., alias="Type")
+    type: TypeField | None = Field(None, alias="Type")
     value_detection: ValueDetection = Field(..., alias="ValueDetection")
 
 

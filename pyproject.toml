@@ -16,6 +16,8 @@ dev = [
     "jupyterlab>=4.4.0",
     "pre-commit>=4.2.0",
     "pyright>=1.1.398",
+    "pytest>=8.3.5",
+    "pytest-pretty>=1.2.0",
     "ruff>=0.11.2",
 ]
 
@@ -31,6 +33,9 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 "*.ipynb"  = [
     "F403", # import *
+]
+"tests/**" = [
+    "ANN201", # missing return type
 ]
 
 
