@@ -22,6 +22,10 @@ tasks:
     cmds:
       - uv run reflex run
 
+  jupyter:
+    cmds:
+      - uv run jupyter lab
+
   sync:
     desc: Sync from GitHub and install dependencies
     cmds:
