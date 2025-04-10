@@ -22,6 +22,10 @@ tasks:
     cmds:
       - uv run reflex run
 
+  test:
+    cmds:
+      - uv run pytest
+
   jupyter:
     cmds:
       - uv run jupyter lab
