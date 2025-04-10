@@ -14,3 +14,4 @@ def line_item() -> LineItem:
 
 def test_line_item(line_item: LineItem):
     assert isinstance(line_item, LineItem)
+    assert line_item.line_item_expense_fields[0].page_number == 1
