@@ -7,3 +7,4 @@ __pycache__/
 .python-version
 *.json
 uploaded_files/*
+temp/.ipynb_checkpoints
