@@ -31,20 +31,20 @@ class Relationship(BaseModel):
 
 class Block(BaseModel):
     block_type: str = Field(..., alias="BlockType")
-    column_index: int | None = Field(None, alias="ColumnIndex")
-    column_span: int | None = Field(None, alias="ColumnSpan")
+    column_index: int | None = Field(default=None, alias="ColumnIndex")
+    column_span: int | None = Field(default=None, alias="ColumnSpan")
     confidence: float = Field(..., alias="Confidence")
     entity_types: list[str] = Field(..., alias="EntityTypes")
     geometry: Geometry = Field(..., alias="Geometry")
     id: str = Field(..., alias="Id")
     page: int = Field(..., alias="Page")
     query: Query | None = Field(None, alias="Query")
-    relationships: list[Relationship] | None = Field(None, alias="Relationships")
-    row_index: int | None = Field(None, alias="RowIndex")
-    row_span: int | None = Field(None, alias="RowSpan")
-    selection_status: str | None = Field(None, alias="SelectionStatus")
-    text: str | None = Field(None, alias="Text")
-    text_type: str | None = Field(None, alias="TextType")
+    relationships: list[Relationship] | None = Field(default=None, alias="Relationships")
+    row_index: int | None = Field(default=None, alias="RowIndex")
+    row_span: int | None = Field(default=None, alias="RowSpan")
+    selection_status: str | None = Field(default=None, alias="SelectionStatus")
+    text: str | None = Field(default=None, alias="Text")
+    text_type: str | None = Field(default=None, alias="TextType")
 
 
 class Currency(BaseModel):
@@ -69,17 +69,17 @@ class TypeField(BaseModel):
 
 
 class ValueDetection(BaseModel):
-    confidence: float | None = Field(None, alias="Confidence")
-    geometry: Geometry | None = Field(None, alias="Geometry")
+    confidence: float | None = Field(default=None, alias="Confidence")
+    geometry: Geometry | None = Field(default=None, alias="Geometry")
     text: str = Field(..., alias="Text")
 
 
 class LineItemExpenseField(BaseModel):
-    currency: Currency | None = Field(None, alias="Currency")
-    group_properties: list[GroupProperty] | None = Field(None, alias="GroupProperties")
-    label_detection: LabelDetection | None = Field(None, alias="LabelDetection")
+    currency: Currency | None = Field(default=None, alias="Currency")
+    group_properties: list[GroupProperty] | None = Field(default=None, alias="GroupProperties")
+    label_detection: LabelDetection | None = Field(default=None, alias="LabelDetection")
     page_number: int = Field(..., alias="PageNumber")
-    type: TypeField | None = Field(None, alias="Type")
+    type: TypeField | None = Field(default=None, alias="Type")
     value_detection: ValueDetection = Field(..., alias="ValueDetection")
 
 
@@ -93,9 +93,9 @@ class LineItemGroup(BaseModel):
 
 
 class SummaryField(BaseModel):
-    currency: Currency | None = Field(None, alias="Currency")
-    group_properties: list[GroupProperty] | None = Field(None, alias="GroupProperties")
-    label_detection: LabelDetection | None = Field(None, alias="LabelDetection")
+    currency: Currency | None = Field(default=None, alias="Currency")
+    group_properties: list[GroupProperty] | None = Field(default=None, alias="GroupProperties")
+    label_detection: LabelDetection | None = Field(default=None, alias="LabelDetection")
     page_number: int = Field(..., alias="PageNumber")
     type: TypeField = Field(..., alias="Type")
     value_detection: ValueDetection = Field(..., alias="ValueDetection")
