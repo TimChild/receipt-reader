@@ -33,7 +33,7 @@ class Block(BaseModel):
     block_type: str = Field(..., alias="BlockType")
     column_index: int | None = Field(default=None, alias="ColumnIndex")
     column_span: int | None = Field(default=None, alias="ColumnSpan")
-    confidence: float = Field(..., alias="Confidence")
+    confidence: float | None = Field(default=None, alias="Confidence")
     entity_types: list[str] = Field(..., alias="EntityTypes")
     geometry: Geometry = Field(..., alias="Geometry")
     id: str = Field(..., alias="Id")
