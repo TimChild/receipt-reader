@@ -28,6 +28,12 @@ ignore = [
     "ANN401",  # Any as type
 ]
 
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb"  = [
+    "F403", # import *
+]
+
+
 [tool.pyright]
 typeCheckingMode = "standard"
 venvPath = "."
