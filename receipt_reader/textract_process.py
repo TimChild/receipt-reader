@@ -27,15 +27,6 @@ def do_textract_process(client: Any, image_data: bytes) -> dict[str, Any]:
     return response
 
 
-def validate_data(data: dict[str, Any]) -> ResponseModel:
-    return ResponseModel.model_validate(data)
-
-
-def save_data(data: ResponseModel, save_path: str) -> None:
-    with Path(save_path).open("w") as f:
-        f.write(data.model_dump_json(by_alias=True))
-
-
 def get_raw_data(
     bucket: str,
     document: str,
@@ -56,15 +47,19 @@ def save_raw_data(data: dict[str, Any], save_path: str) -> None:
         f.write(json.dumps(data, indent=2))
 
 
-def save_validated_data(data: dict[str, Any], save_path: str) -> None:
-    validated = validate_data(data)
-    save_data(validated, save_path)
-
-
 def load_raw_data(file_path: str) -> dict[str, Any]:
     with Path(file_path).open("r") as f:
         data = json.load(f)
     return data
+
+
+def validate_data(data: dict[str, Any]) -> ResponseModel:
+    return ResponseModel.model_validate(data)
+
+
+def save_data(data: ResponseModel, save_path: str) -> None:
+    with Path(save_path).open("w") as f:
+        f.write(data.model_dump_json(by_alias=True))
 
 
 if __name__ == "__main__":
@@ -75,4 +70,5 @@ if __name__ == "__main__":
     # )
     # save_raw_data(raw_data, "raw_output.json")
     raw_data = load_raw_data("raw_output.json")
-    save_validated_data(raw_data, "validated_output.json")
+    validated_data = validate_data(raw_data)
+    save_data(validated_data, "validated_output.json")
